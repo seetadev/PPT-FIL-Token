@@ -3,7 +3,7 @@ ERC-20 Utility Token for Token Gated Access on Filecoin Mainnet
 
 # Instructions
 
-```git clone [https://github.com/Chaitu-Tatipamula/Contracts.git](https://github.com/seetadev/PPT-FIL-Token.git)```
+```git clone https://github.com/seetadev/PPT-FIL-Token.git```
 
 Setup an env file with these fields
 ```
