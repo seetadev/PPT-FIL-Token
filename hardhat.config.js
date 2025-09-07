@@ -29,12 +29,13 @@ module.exports = {
       accounts: [process.env.PRIVATE_KEY]
     },
     neondevnet: {
-      url: "https://devnet.neonevm.org",
+      url: process.env.RPC_URL,
       accounts: [process.env.PRIVATE_KEY],
       chainId: 245022926,
       allowUnlimitedContractSize: false,
       gas: "auto",
       gasPrice: "auto",
+      timeout: 200000
     },
     neonmainnet: {
       url: "https://neon-proxy-mainnet.solana.p2p.org",
@@ -42,8 +43,7 @@ module.exports = {
       chainId: 245022934,
       allowUnlimitedContractSize: false,
       gas: "auto",
-      gasPrice: "auto",
-    },
+      gasPrice: "auto",    },
   },
   etherscan: {
     apiKey: {

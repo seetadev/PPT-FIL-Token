@@ -1,7 +1,7 @@
 const hre = require('hardhat')
 
 async function main() {
-  const pptToken = await hre.ethers.deployContract("PPTToken",[200_000])
+  const pptToken = await hre.ethers.deployContract("PPTToken",[20_000])
   await pptToken.waitForDeployment();
 
     console.log(
