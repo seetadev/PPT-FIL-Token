@@ -27,7 +27,23 @@ module.exports = {
     "celo-alfajores": {
       url: process.env.RPC_URL,
       accounts: [process.env.PRIVATE_KEY]
-    }
+    },
+    neondevnet: {
+      url: "https://devnet.neonevm.org",
+      accounts: [process.env.PRIVATE_KEY],
+      chainId: 245022926,
+      allowUnlimitedContractSize: false,
+      gas: "auto",
+      gasPrice: "auto",
+    },
+    neonmainnet: {
+      url: "https://neon-proxy-mainnet.solana.p2p.org",
+      accounts: [process.env.PRIVATE_KEY],
+      chainId: 245022934,
+      allowUnlimitedContractSize: false,
+      gas: "auto",
+      gasPrice: "auto",
+    },
   },
   etherscan: {
     apiKey: {
@@ -75,8 +91,8 @@ module.exports = {
         network: "celo-alfajores",
         chainId: 44787,
         urls: {
-            apiURL: "https://api-alfajores.celoscan.io/api",
-            browserURL: "https://alfajores.celoscan.io",
+          apiURL: "https://api-alfajores.celoscan.io/api",
+          browserURL: "https://alfajores.celoscan.io",
         },
       },
       {
@@ -86,7 +102,23 @@ module.exports = {
           apiURL: "https://api-optimistic.etherscan.io/api",
           browserURL: "https://optimistic.etherscan.io"
         }
-      }
+      },
+      {
+        network: "neonevm",
+        chainId: 245022926,
+        urls: {
+          apiURL: "https://neon-devnet.blockscout.com/api",
+          browserURL: "https://neon-devnet.blockscout.com",
+        },
+      },
+      {
+        network: "neonevm",
+        chainId: 245022934,
+        urls: {
+          apiURL: "https://neon.blockscout.com/api",
+          browserURL: "https://neon.blockscout.com",
+        },
+      },
     ]
   }
 };
