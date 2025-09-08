@@ -52,7 +52,8 @@ module.exports = {
       "op-mainnet": process.env.VERIFY_KEY,
       "optimism": process.env.VERIFY_KEY,
       "arbitrumSepolia": process.env.VERIFY_KEY,
-      "celo-alfajores": process.env.VERIFY_KEY
+      "celo-alfajores": process.env.VERIFY_KEY,
+      neonevm: process.env.VERIFY_KEY,
     },
     customChains: [
       {
@@ -120,5 +121,8 @@ module.exports = {
         },
       },
     ]
+  },
+  sourcify: {
+    enabled: true
   }
 };
