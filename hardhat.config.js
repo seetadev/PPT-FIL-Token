@@ -1,42 +1,43 @@
 require("@nomicfoundation/hardhat-toolbox");
-require('dotenv').config()
+require('dotenv').config();
+
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.20",
   networks: {
     "calibnet": {
-      url: process.env.RPC_URL,
-      accounts: [process.env.PRIVATE_KEY]
+      url: process.env.CALIBNET_RPC_URL || "",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     },
     "filecoin": {
-      url: process.env.RPC_URL,
-      accounts: [process.env.PRIVATE_KEY]
+      url: process.env.FILECOIN_RPC_URL || "",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     },
     "op-sepolia": {
-      url: process.env.RPC_URL,
-      accounts: [process.env.PRIVATE_KEY]
+      url: process.env.OP_SEPOLIA_RPC_URL || "",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     },
     "op-mainnet": {
-      url: process.env.RPC_URL,
-      accounts: [process.env.PRIVATE_KEY]
+      url: process.env.OP_MAINNET_RPC_URL || "",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     },
     "arbitrumSepolia": {
-      url: process.env.RPC_URL,
-      accounts: [process.env.PRIVATE_KEY]
+      url: process.env.ARBITRUM_SEPOLIA_RPC_URL || "",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     },
     "celo-alfajores": {
-      url: process.env.RPC_URL,
-      accounts: [process.env.PRIVATE_KEY]
+      url: process.env.CELO_ALFAJORES_RPC_URL || "",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     }
   },
   etherscan: {
     apiKey: {
-      "calibnet": process.env.VERIFY_KEY,
-      "op-sepolia": process.env.VERIFY_KEY,
-      "op-mainnet": process.env.VERIFY_KEY,
-      "optimism": process.env.VERIFY_KEY,
-      "arbitrumSepolia": process.env.VERIFY_KEY,
-      "celo-alfajores": process.env.VERIFY_KEY
+      "calibnet": process.env.CALIBNET_VERIFY_KEY || "",
+      "op-sepolia": process.env.OP_VERIFY_KEY || "",
+      "op-mainnet": process.env.OP_VERIFY_KEY || "",
+      "optimism": process.env.OP_VERIFY_KEY || "",
+      "arbitrumSepolia": process.env.ARBITRUM_VERIFY_KEY || "",
+      "celo-alfajores": process.env.CELO_VERIFY_KEY || ""
     },
     customChains: [
       {
@@ -75,9 +76,9 @@ module.exports = {
         network: "celo-alfajores",
         chainId: 44787,
         urls: {
-            apiURL: "https://api-alfajores.celoscan.io/api",
-            browserURL: "https://alfajores.celoscan.io",
-        },
+          apiURL: "https://api-alfajores.celoscan.io/api",
+          browserURL: "https://alfajores.celoscan.io"
+        }
       },
       {
         network: "op-mainnet",
