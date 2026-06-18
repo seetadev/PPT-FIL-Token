@@ -14,6 +14,7 @@ contract MedInvoiceContract is Ownable, ReentrancyGuard {
 
     event FileSaved(address indexed user, string file, uint256 timestamp);
     event NewSubscription(address indexed subscriber, uint256 endTime);
+    event TokensWithdrawn(address indexed owner, uint256 amount);
 
     constructor(address _pptToken) Ownable(msg.sender) {
         pptToken = IERC20(_pptToken);
@@ -55,16 +56,23 @@ contract MedInvoiceContract is Ownable, ReentrancyGuard {
     
     function subscribe() external nonReentrant {
         require(!isSubscribed(msg.sender), "Already subscribed");
-        require(pptToken.transfer(msg.sender, SUBSCRIPTION_AMOUNT), "Token transfer failed");
-        
+        require(
+            pptToken.allowance(msg.sender, address(this)) >= SUBSCRIPTION_AMOUNT,
+            "Insufficient token allowance. Approve the contract first."
+        );
+        require(
+            pptToken.transferFrom(msg.sender, address(this), SUBSCRIPTION_AMOUNT),
+            "Token transfer failed"
+        );
 
         uint256 endTime = block.timestamp + SUBSCRIPTION_PERIOD;
         subscriptionEndTimes[msg.sender] = endTime;
-        
+
         emit NewSubscription(msg.sender, endTime);
     }
 
     function withdrawTokens(uint256 amount) external onlyOwner {
         require(pptToken.transfer(owner(), amount), "Token withdrawal failed");
+        emit TokensWithdrawn(owner(), amount);
     }
 }
